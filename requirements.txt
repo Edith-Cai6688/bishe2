@@ -1,0 +1,16 @@
+hf_transfer==0.1.9
+imageio-ffmpeg==0.6.0
+importlib_resources==7.1.0
+inquirerpy==0.3.4
+lerobot==0.1.0
+matplotlib==3.10.9
+modelscope==1.37.0
+mujoco==3.1.6
+pip==26.0.1
+PyAutoGUI==0.9.54
+PySocks==1.7.1
+pytest==9.0.3
+scipy==1.15.3
+torchaudio==2.6.0
+transformers==4.50.3
+wheel==0.46.3

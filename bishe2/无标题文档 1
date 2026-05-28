@@ -1,0 +1,41 @@
+ssh -L 5901:localhost:5901 -p 19364 root@connect.westd.seetacloud.com
+
+/opt/TurboVNC/bin/vncserver -kill :1
+rm -f /tmp/.X1-lock
+rm -rf /tmp/.X11-unix/X1
+
+# 设置软件渲染环境变量后启动 VNC
+export LIBGL_ALWAYS_SOFTWARE=1
+export GALLIUM_DRIVER=llvmpipe
+export MESA_GL_VERSION_OVERRIDE=3.3
+/opt/TurboVNC/bin/vncserver :1 -geometry 1920x1080 -depth 24
+
+# 在 VNC 桌面里的终端运行程序
+# 确保这些环境变量在 VNC 会话中也生效
+export LIBGL_ALWAYS_SOFTWARE=1
+export GALLIUM_DRIVER=llvmpipe
+export MESA_GL_VERSION_OVERRIDE=3.3
+
+# 激活你的环境
+conda activate pi0
+
+# 运行程序
+python your_script.py
+
+# 本地电脑另启动一个终端
+vncviewer localhost:5901
+
+
+lerobot重新换base模型 finetune 代码
+python train_model5.py \
+  --config_path mypi0.yaml \
+  --policy.path=/root/autodl-tmp/ckpt/my_pi04/checkpoints/005000/pretrained_model
+  
+resume的命令代码
+python train_model.py \
+  --config_path /root/autodl-tmp/ckpt/my_pi05/checkpoints/005000/pretrained_model/train_config.json \
+  --steps 10000 \
+  --output_dir /root/autodl-tmp/ckpt/my_pi05_resume
+  
+ 清空垃圾箱
+ rm -rf .Trash-0/*
